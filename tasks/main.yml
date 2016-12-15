@@ -17,3 +17,32 @@
     uid: "{{ item.uid | default(omit) }}"
     update_password: "{{ item.update_password | default(omit) }}"
   with_items: "{{ user_list }}"
+
+- name: Added User ssh keys
+  authorized_key:
+    user: "{{ item.name }}"
+    key: "{{ item.ssh_key }}"
+  when: item.ssh_key is defined
+  with_items: "{{ user_list }}"
+
+- name: Install sudo
+  package:
+    name: sudo
+    state: present
+
+- name: Add User sudoers files
+  copy:
+    content: "{{ item.name }} ALL=(ALL) NOPASSWD:ALL"
+    dest: "/etc/sudoers.d/{{ item.name }}"
+    owner: root
+    group: root
+  when: item.sudoers is defined and item.sudoers == true
+  with_items: "{{ user_list }}"
+
+# If sudoers is not defined or equals false then make sure the sudoers file is absent
+- name: Remove User sudoers file
+  file:
+    path: "/etc/sudoers.d/{{ item.name }}"
+    state: absent
+  when: item.sudoers is undefined or item.sudoers == false
+  with_items: "{{ user_list }}"
