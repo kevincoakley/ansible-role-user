@@ -1,0 +1,17 @@
+---
+# Test if the users are present
+- shell: /usr/bin/id -u user01
+  register: user01_status
+  changed_when: not user01_status.stderr.find("no such user")
+- shell: /usr/bin/id -u user02
+  register: user02_status
+  changed_when: not user02_status.stderr.find("no such user")
+- shell: /usr/bin/id -u user03
+  register: user03_status
+  changed_when: not user03_status.stderr.find("no such user")
+
+# Test if the user is absent
+- shell: /usr/bin/id -u user04
+  register: user04_status
+  failed_when: not user04_status.stderr.find("no such user")
+  changed_when: not user04_status.stderr.find("no such user")
