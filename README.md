@@ -3,7 +3,7 @@ ansible-role-user
 
 [![Build Status](https://travis-ci.org/kevincoakley/ansible-role-user.svg?branch=master)](https://travis-ci.org/kevincoakley/ansible-role-user)
 
-Manage users for CentOS 7, Ubuntu 14.04 and Ubuntu 16.04
+Manage users for CentOS 7 and Ubuntu 18.04
 
 Requirements
 ------------
