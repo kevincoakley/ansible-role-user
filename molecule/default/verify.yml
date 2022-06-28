@@ -1,0 +1,47 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+
+  tasks:
+    # Test if the users are present
+    - name: Test user01
+      shell: /usr/bin/id -u user01
+      register: user01_status
+      changed_when: not user01_status.stderr.find("no such user")
+    - name: Test user02
+      shell: /usr/bin/id -u user02
+      register: user02_status
+      changed_when: not user02_status.stderr.find("no such user")
+    - name: Test user03
+      shell: /usr/bin/id -u user03
+      register: user03_status
+      changed_when: not user03_status.stderr.find("no such user")
+
+    # Test if the user is absent
+    - name: Test user04
+      shell: /usr/bin/id -u user04
+      register: user04_status
+      failed_when: not user04_status.stderr.find("no such user")
+      changed_when: not user04_status.stderr.find("no such user")
+
+    # Check that the authorized_key was created for user02
+    - name: Test that the authorized_key was created for user02
+      command: grep -Fqx "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsizUbyTe9lDMCCvd1cUFGJwd3pWbtFrnSa1FfMtZpbHHeaKJwo5NFIihA2IN4SLR8ICrJwL1auZ1gbk/ySzFRBU/hE4r6PWe9M5nkE6bymlrTIE8bEp9/ZjJDDIYmCGNbCQ/9pvJZbj6sJDWu1JaW5IyegLuXLGYWxnhbzu6BlqH1oBDK7x9vAQftV3zDzxAzmU49H8r1q3b2aGbiEMCzKNsOTUKbD5kYra3wCe1aphEMSiCVPVTRFE2sXDACR1uGqmm+hXZ8/KTR4+B04M93Udjlq+lhDknhnV34xjFNcbdInI0PQF8QK9mafVODFKL3CWMYECi7y6U7ErV1wABXF7G6Gl1jamn/f8QYYMH3Q1/RSnU4q+GDpt2bqUIZ7BMKhujeO2XR6ijxcbUAL7hXJmAWkwsScmPT/C6byZEkiXKXkx73A28hIck2rA9aZ4tOqBSsGAyB8zcryZAI5lYWatAzryOLJWE+Yr0NO3+N4KL1ts3dihGszSMlJmhkBvxjTOhjIx2cddBR8clJDVDGssG/5qEf8p7d1uWZFyT462uEanBnR1qMvQM75r+Nf9Br02+U9ORZtkxn3bdYi58lAmtoFeDX1COvdk88ySYfRnq6StCkUJDeylt+hT4+WrWSZTpWRB6BQLzoTHkqgNfI2J/hqfbmQguSiwC12Il4Dw== your_email@example.com" /home/user02/.ssh/authorized_keys
+      register: check_authorized_keys_user02
+      changed_when: "check_authorized_keys_user02.rc != 0"
+      failed_when: "check_authorized_keys_user02.rc != 0"
+
+    # Check that the first authorized_key was created for user05
+    - name: Test that the first authorized_key was created for user05
+      command: grep -Fqx "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsizUbyTe9lDMCCvd1cUFGJwd3pWbtFrnSa1FfMtZpbHHeaKJwo5NFIihA2IN4SLR8ICrJwL1auZ1gbk/ySzFRBU/hE4r6PWe9M5nkE6bymlrTIE8bEp9/ZjJDDIYmCGNbCQ/9pvJZbj6sJDWu1JaW5IyegLuXLGYWxnhbzu6BlqH1oBDK7x9vAQftV3zDzxAzmU49H8r1q3b2aGbiEMCzKNsOTUKbD5kYra3wCe1aphEMSiCVPVTRFE2sXDACR1uGqmm+hXZ8/KTR4+B04M93Udjlq+lhDknhnV34xjFNcbdInI0PQF8QK9mafVODFKL3CWMYECi7y6U7ErV1wABXF7G6Gl1jamn/f8QYYMH3Q1/RSnU4q+GDpt2bqUIZ7BMKhujeO2XR6ijxcbUAL7hXJmAWkwsScmPT/C6byZEkiXKXkx73A28hIck2rA9aZ4tOqBSsGAyB8zcryZAI5lYWatAzryOLJWE+Yr0NO3+N4KL1ts3dihGszSMlJmhkBvxjTOhjIx2cddBR8clJDVDGssG/5qEf8p7d1uWZFyT462uEanBnR1qMvQM75r+Nf9Br02+U9ORZtkxn3bdYi58lAmtoFeDX1COvdk88ySYfRnq6StCkUJDeylt+hT4+WrWSZTpWRB6BQLzoTHkqgNfI2J/hqfbmQguSiwC12Il4Dw== your_email@example.com" /home/user05/.ssh/authorized_keys
+      register: check_authorized_keys_user05_01
+      changed_when: "check_authorized_keys_user05_01.rc != 0"
+      failed_when: "check_authorized_keys_user05_01.rc != 0"
+
+    # Check that the second authorized_key was created for user05
+    - name: Test that the second authorized_key was created for user05
+      command: grep -Fqx "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAhUNvag5KXJcsLcmkCqnQy/tyJUO54v1VDZQZJASUBQ your_email@example.net" /home/user05/.ssh/authorized_keys
+      register: check_authorized_keys_user05_01
+      changed_when: "check_authorized_keys_user05_01.rc != 0"
+      failed_when: "check_authorized_keys_user05_01.rc != 0"

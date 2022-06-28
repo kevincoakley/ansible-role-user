@@ -1,8 +1,9 @@
 ---
 galaxy_info:
-  role_name: user
+  role_name: anaconda
+  namespace: kevincoakley
   author: Kevin Coakley
-  description: Manage users for CentOS 7 and Ubuntu 18.04
+  description: Manage users for CentOS and Ubuntu
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -17,7 +18,7 @@ galaxy_info:
   # - CC-BY
   license: BSD
 
-  min_ansible_version: 2.6
+  min_ansible_version: "2.9"
 
   #
   # platforms is a list of platforms, and each platform has a name and a list of versions.
@@ -25,11 +26,10 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - 7
+        - all
     - name: Ubuntu
       versions:
-        - bionic
-
+        - all
   galaxy_tags:
     - system
     - user
