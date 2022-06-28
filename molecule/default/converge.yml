@@ -8,11 +8,16 @@
         - name: user01
           uid: 2001
         - name: user02
-          ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsizUbyTe9lDMCCvd1cUFGJwd3pWbtFrnSa1FfMtZpbHHeaKJwo5NFIihA2IN4SLR8ICrJwL1auZ1gbk/ySzFRBU/hE4r6PWe9M5nkE6bymlrTIE8bEp9/ZjJDDIYmCGNbCQ/9pvJZbj6sJDWu1JaW5IyegLuXLGYWxnhbzu6BlqH1oBDK7x9vAQftV3zDzxAzmU49H8r1q3b2aGbiEMCzKNsOTUKbD5kYra3wCe1aphEMSiCVPVTRFE2sXDACR1uGqmm+hXZ8/KTR4+B04M93Udjlq+lhDknhnV34xjFNcbdInI0PQF8QK9mafVODFKL3CWMYECi7y6U7ErV1wABXF7G6Gl1jamn/f8QYYMH3Q1/RSnU4q+GDpt2bqUIZ7BMKhujeO2XR6ijxcbUAL7hXJmAWkwsScmPT/C6byZEkiXKXkx73A28hIck2rA9aZ4tOqBSsGAyB8zcryZAI5lYWatAzryOLJWE+Yr0NO3+N4KL1ts3dihGszSMlJmhkBvxjTOhjIx2cddBR8clJDVDGssG/5qEf8p7d1uWZFyT462uEanBnR1qMvQM75r+Nf9Br02+U9ORZtkxn3bdYi58lAmtoFeDX1COvdk88ySYfRnq6StCkUJDeylt+hT4+WrWSZTpWRB6BQLzoTHkqgNfI2J/hqfbmQguSiwC12Il4Dw== your_email@example.com
+          ssh_key:
+            - key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsizUbyTe9lDMCCvd1cUFGJwd3pWbtFrnSa1FfMtZpbHHeaKJwo5NFIihA2IN4SLR8ICrJwL1auZ1gbk/ySzFRBU/hE4r6PWe9M5nkE6bymlrTIE8bEp9/ZjJDDIYmCGNbCQ/9pvJZbj6sJDWu1JaW5IyegLuXLGYWxnhbzu6BlqH1oBDK7x9vAQftV3zDzxAzmU49H8r1q3b2aGbiEMCzKNsOTUKbD5kYra3wCe1aphEMSiCVPVTRFE2sXDACR1uGqmm+hXZ8/KTR4+B04M93Udjlq+lhDknhnV34xjFNcbdInI0PQF8QK9mafVODFKL3CWMYECi7y6U7ErV1wABXF7G6Gl1jamn/f8QYYMH3Q1/RSnU4q+GDpt2bqUIZ7BMKhujeO2XR6ijxcbUAL7hXJmAWkwsScmPT/C6byZEkiXKXkx73A28hIck2rA9aZ4tOqBSsGAyB8zcryZAI5lYWatAzryOLJWE+Yr0NO3+N4KL1ts3dihGszSMlJmhkBvxjTOhjIx2cddBR8clJDVDGssG/5qEf8p7d1uWZFyT462uEanBnR1qMvQM75r+Nf9Br02+U9ORZtkxn3bdYi58lAmtoFeDX1COvdk88ySYfRnq6StCkUJDeylt+hT4+WrWSZTpWRB6BQLzoTHkqgNfI2J/hqfbmQguSiwC12Il4Dw== your_email@example.com
         - name: user03
           system: true
         - name: user04
           state: absent
+        - name: user05
+          ssh_key:
+            - key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsizUbyTe9lDMCCvd1cUFGJwd3pWbtFrnSa1FfMtZpbHHeaKJwo5NFIihA2IN4SLR8ICrJwL1auZ1gbk/ySzFRBU/hE4r6PWe9M5nkE6bymlrTIE8bEp9/ZjJDDIYmCGNbCQ/9pvJZbj6sJDWu1JaW5IyegLuXLGYWxnhbzu6BlqH1oBDK7x9vAQftV3zDzxAzmU49H8r1q3b2aGbiEMCzKNsOTUKbD5kYra3wCe1aphEMSiCVPVTRFE2sXDACR1uGqmm+hXZ8/KTR4+B04M93Udjlq+lhDknhnV34xjFNcbdInI0PQF8QK9mafVODFKL3CWMYECi7y6U7ErV1wABXF7G6Gl1jamn/f8QYYMH3Q1/RSnU4q+GDpt2bqUIZ7BMKhujeO2XR6ijxcbUAL7hXJmAWkwsScmPT/C6byZEkiXKXkx73A28hIck2rA9aZ4tOqBSsGAyB8zcryZAI5lYWatAzryOLJWE+Yr0NO3+N4KL1ts3dihGszSMlJmhkBvxjTOhjIx2cddBR8clJDVDGssG/5qEf8p7d1uWZFyT462uEanBnR1qMvQM75r+Nf9Br02+U9ORZtkxn3bdYi58lAmtoFeDX1COvdk88ySYfRnq6StCkUJDeylt+hT4+WrWSZTpWRB6BQLzoTHkqgNfI2J/hqfbmQguSiwC12Il4Dw== your_email@example.com
+            - key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAhUNvag5KXJcsLcmkCqnQy/tyJUO54v1VDZQZJASUBQ your_email@example.net
 
   roles:
     - ansible-role-user

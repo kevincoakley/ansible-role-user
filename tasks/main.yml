@@ -37,7 +37,14 @@
 
 - name: Added User ssh keys
   authorized_key:
-    user: "{{ item.name }}"
-    key: "{{ item.ssh_key }}"
-  when: item.ssh_key is defined
-  with_items: "{{ user_list }}"
+    comment: "{{ item.1.comment | default(omit) }}"
+    exclusive: "{{ item.1.exclusive | default(omit) }}"
+    follow: "{{ item.1.follow | default(omit) }}"
+    key: "{{ item.1.key }}"
+    key_options: "{{ item.1.key_options | default(omit) }}"
+    manage_dir: "{{ item.1.manage_dir | default(omit) }}"
+    path: "{{ item.1.path | default(omit) }}"
+    state: "{{ item.1.state | default(omit) }}"
+    user: "{{ item.0.name }}"
+    validate_certs: "{{ item.1.validate_certs | default(omit) }}"
+  loop: "{{ q('ansible.builtin.subelements', user_list, 'ssh_key', {'skip_missing': True}) }}"
