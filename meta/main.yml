@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: anaconda
+  role_name: user
   namespace: kevincoakley
   author: Kevin Coakley
   description: Manage users for CentOS and Ubuntu
