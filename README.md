@@ -1,9 +1,9 @@
 ansible-role-user
 =================
 
-[![Build Status](https://travis-ci.org/kevincoakley/ansible-role-user.svg?branch=master)](https://travis-ci.org/kevincoakley/ansible-role-user)
+![](https://github.com/kevincoakley/ansible-role-user/workflows/Molecule%20Test/badge.svg)
 
-Manage users for CentOS 7 and Ubuntu 18.04
+Manage users for CentOS and Ubuntu
 
 Requirements
 ------------

@@ -1,6 +1,6 @@
 ---
 - name: Create Users
-  user:
+  ansible.builtin.user:
     append: "{{ item.append | default(omit) }}"
     comment: "{{ item.comment | default(omit) }}"
     create_home: "{{ item.create_home | default(omit) }}"
